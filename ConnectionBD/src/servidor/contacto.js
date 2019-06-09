@@ -1,4 +1,6 @@
 const mysql = require('mysql');
+const axios = require('axios');
+
 class Contacto {
     constructor(oConfig) {
         this.oConfig = oConfig;
@@ -44,7 +46,14 @@ class Contacto {
                       } else {
                             console.log("Obtencion de datos exitosa");
                       }
-                      console.log(res);
+                      axios.post('http://localhost:400/sendInfo', res
+                          .then(response => {
+                              console.log('Envio de informacion correcto');
+                          })
+                          .catch(error => {
+                              console.log('Error al envio de datos');
+                          })
+                      );
                    });
                }
            } catch (x) {
