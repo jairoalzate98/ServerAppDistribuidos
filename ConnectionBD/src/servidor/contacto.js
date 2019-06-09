@@ -28,5 +28,29 @@ class Contacto {
            }
         });
     }
+
+    // Retorna todos los post de la base de datos
+
+    obtenerPost(){
+        var con = mysql.createConnection(this.oConfig);
+        con.connect(function (error) {
+           try{
+               if (error){
+                   console.log('Error al insertar a la BD' + error);
+               } else{
+                   con.query(`SELECT * FROM posts`, function (error, res, campo) {
+                      if (error){
+                            console.log("Error al obtener datos de la bd");
+                      } else {
+                            console.log("Obtencion de datos exitosa");
+                      }
+                      console.log(res);
+                   });
+               }
+           } catch (x) {
+               console.log("Contacto agregar post --Error-- " + x);
+           }
+        });
+    }
 }
 module.exports = Contacto;
