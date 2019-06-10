@@ -17,12 +17,19 @@ const oContacto = new contacto({
     database: "post"
 });
 
-app.get('/saveData', function (req, res, next) {
+app.get('/saveData', function (req, res) {
     oContacto.agregarPost('201613207', 'Hola', '13/01/2019', 'Hola', 'imagen.jpg', '123', '12');
+    res.send('ok');
 });
 
-app.get('/getData', function (req, res, next) {
-    oContacto.obtenerPost();
+app.get('/getData', function (req, res) {
+    oContacto.obtenerPost(function(result) {
+        res.send(result);
+    });
 });
+
+app.post('/reciveData', function (req, res) {
+    console.log(res);
+})
 
 module.exports = app;

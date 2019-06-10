@@ -33,27 +33,20 @@ class Contacto {
 
     // Retorna todos los post de la base de datos
 
-    obtenerPost(){
+     async obtenerPost(result){
         var con = mysql.createConnection(this.oConfig);
-        con.connect(function (error) {
+        con.connect( function (error) {
            try{
                if (error){
-                   console.log('Error al insertar a la BD' + error);
+                   console.log('Error al conectar a la BD' + error);
                } else{
-                   con.query(`SELECT * FROM posts`, function (error, res, campo) {
+                   con.query(`SELECT * FROM posts`,  function (error, res) {
                       if (error){
                             console.log("Error al obtener datos de la bd");
                       } else {
-                            console.log("Obtencion de datos exitosa");
+                          console.log("Obtencion de datos exitosa");
                       }
-                      axios.post('http://localhost:400/sendInfo', res
-                          .then(response => {
-                              console.log('Envio de informacion correcto');
-                          })
-                          .catch(error => {
-                              console.log('Error al envio de datos');
-                          })
-                      );
+                      result(res);
                    });
                }
            } catch (x) {
