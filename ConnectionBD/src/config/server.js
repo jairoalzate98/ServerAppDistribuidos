@@ -19,19 +19,14 @@ const oContacto = new contacto({
     database: "post"
 });
 
-app.get('/saveData', function (req, res) {
-    oContacto.agregarPost('201613207', 'Hola', '13/01/2019', 'Hola', 'imagen.jpg', '123', '12');
-    res.send('ok');
-});
-
 app.get('/getData', function (req, res) {
     oContacto.obtenerPost(function(result) {
         res.send(result);
     });
 });
 
-app.post('/receiveData', function (req, res) {
-    console.log(req.body);
+app.post('/saveData', function (req, res) {
+    oContacto.agregarPost(req.body.idUser, req.body.Titulo, req.body.Fecha, req.body.Descripcion, req.body.imagenTitle, req.body.longitud, req.body.latitud);
     res.send("ok");
 })
 
