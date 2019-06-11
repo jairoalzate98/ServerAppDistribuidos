@@ -1,0 +1,21 @@
+{
+  "name": "serverImage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/img.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^3.21.2",
+    "express-form-data": "^2.0.8",
+    "formidable": "^1.2.1",
+    "fs": "0.0.1-security",
+    "method-override": "*"
+  }
+}
