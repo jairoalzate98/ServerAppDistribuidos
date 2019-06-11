@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
 
 const contacto = require('../servidor/contacto');
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //settings
 
-app.set('port', process.env.PORT || 3045);
+app.set('port', process.env.PORT || 3067);
 app.set('views engine', 'ejs');
 app.set('views', path.join(__dirname, '../app/views'));
 
@@ -28,8 +30,9 @@ app.get('/getData', function (req, res) {
     });
 });
 
-app.post('/reciveData', function (req, res) {
-    console.log(res);
+app.post('/receiveData', function (req, res) {
+    console.log(req.body);
+    res.send("ok");
 })
 
 module.exports = app;
